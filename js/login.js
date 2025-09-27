@@ -91,7 +91,7 @@ function handleCredentialResponse(response) {
 
     window.onload = function () {
     google.accounts.id.initialize({
-      client_id: "492239552965-7n9ns0ft2jkbjfl95idbtnnuq26dvkef.apps.googleusercontent.com.apps.googleusercontent.com", // troque pelo seu
+      client_id: "492239552965-7n9ns0ft2jkbjfl95idbtnnuq26dvkef.apps.googleusercontent.com", // troque pelo seu
       callback: handleCredentialResponse
     });
     google.accounts.id.renderButton(
@@ -107,3 +107,4 @@ function handleCredentialResponse(response) {
 
 
   
+
