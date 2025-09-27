@@ -36,45 +36,6 @@ ROOXYCE Store é um e-commerce moderno especializado em eletrônicos, desenvolvi
   - Tablet: 769px - 1024px
   - Desktop: 1025px+
 
-## 🚀 Deploy no Vercel
-
-### Pré-requisitos
-- Conta no [Vercel](https://vercel.com)
-- Git instalado
-
-### Passos para Deploy
-
-1. **Preparar o projeto:**
-   ```bash
-   # O projeto já está preparado com vercel.json configurado
-   ```
-
-2. **Deploy via Vercel CLI:**
-   ```bash
-   npm i -g vercel
-   vercel --prod
-   ```
-
-3. **Deploy via GitHub:**
-   - Faça push do código para um repositório GitHub
-   - Conecte o repositório no painel do Vercel
-   - O deploy será automático
-
-4. **Deploy via Dashboard:**
-   - Acesse [vercel.com](https://vercel.com)
-   - Clique em "New Project"
-   - Faça upload da pasta do projeto
-   - Configure o nome do projeto
-   - Clique em "Deploy"
-
-### Configurações do Vercel
-
-O arquivo `vercel.json` já está configurado com:
-- Rotas personalizadas
-- Headers de segurança
-- Cache otimizado para assets
-- Redirecionamentos
-
 ## 📁 Estrutura do Projeto
 
 ```
