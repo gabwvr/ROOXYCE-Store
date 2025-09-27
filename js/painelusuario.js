@@ -689,3 +689,150 @@ const estilosNotificacoesPainel = `
 // Adicionar estilos ao head
 document.head.insertAdjacentHTML('beforeend', estilosNotificacoesPainel);
 
+// ==================== NAVEGAÇÃO DA BARRA LATERAL ====================
+// Código para corrigir o problema da barra lateral não funcionar
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // ==================== SISTEMA DE NAVEGAÇÃO ====================
+    function inicializarNavegacaoSidebar() {
+        const linksNavegacao = document.querySelectorAll('.link-navegacao[data-section]');
+        const secoes = document.querySelectorAll('.secao-conteudo');
+        
+        // Adicionar event listeners aos links da barra lateral
+        linksNavegacao.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const secaoAlvo = this.getAttribute('data-section');
+                
+                // Remover classe active de todos os links
+                linksNavegacao.forEach(l => l.classList.remove('active'));
+                
+                // Adicionar classe active ao link clicado
+                this.classList.add('active');
+                
+                // Ocultar todas as seções
+                secoes.forEach(secao => secao.classList.remove('active'));
+                
+                // Mostrar a seção correspondente
+                const secaoElemento = document.getElementById(secaoAlvo);
+                if (secaoElemento) {
+                    secaoElemento.classList.add('active');
+                }
+                
+                // Atualizar breadcrumb
+                atualizarBreadcrumb(secaoAlvo);
+                
+                // Atualizar título da seção
+                atualizarTituloSecao(secaoAlvo);
+            });
+        });
+        
+        console.log('Sistema de navegação da barra lateral inicializado!');
+    }
+    
+    // ==================== ATUALIZAR BREADCRUMB ====================
+    function atualizarBreadcrumb(secaoAtiva) {
+        const breadcrumbAtual = document.getElementById('breadcrumb-atual');
+        
+        const nomesSeccoes = {
+            'dashboard': 'Dashboard',
+            'orders': 'Meus Pedidos',
+            'profile': 'Perfil',
+            'wishlist': 'Lista de Desejos',
+            'addresses': 'Endereços',
+            'settings': 'Configurações'
+        };
+        
+        if (breadcrumbAtual && nomesSeccoes[secaoAtiva]) {
+            breadcrumbAtual.textContent = nomesSeccoes[secaoAtiva];
+        }
+    }
+    
+    // ==================== ATUALIZAR TÍTULO DA SEÇÃO ====================
+    function atualizarTituloSecao(secaoAtiva) {
+        const tituloSecao = document.getElementById('titulo-secao');
+        
+        const titulosSeccoes = {
+            'dashboard': 'Dashboard',
+            'orders': 'Meus Pedidos',
+            'profile': 'Meu Perfil',
+            'wishlist': 'Lista de Desejos',
+            'addresses': 'Meus Endereços',
+            'settings': 'Configurações'
+        };
+        
+        if (tituloSecao && titulosSeccoes[secaoAtiva]) {
+            tituloSecao.textContent = titulosSeccoes[secaoAtiva];
+        }
+    }
+    
+    // ==================== INICIALIZAÇÃO ====================
+    // Inicializar a navegação da barra lateral
+    inicializarNavegacaoSidebar();
+    
+    // Garantir que o dashboard seja a seção ativa por padrão
+    const dashboardLink = document.querySelector('.link-navegacao[data-section="dashboard"]');
+    const dashboardSection = document.getElementById('dashboard');
+    
+    if (dashboardLink && dashboardSection) {
+        // Remover active de todos os links e seções
+        document.querySelectorAll('.link-navegacao').forEach(l => l.classList.remove('active'));
+        document.querySelectorAll('.secao-conteudo').forEach(s => s.classList.remove('active'));
+        
+        // Ativar dashboard
+        dashboardLink.classList.add('active');
+        dashboardSection.classList.add('active');
+        
+        // Atualizar breadcrumb e título
+        atualizarBreadcrumb('dashboard');
+        atualizarTituloSecao('dashboard');
+    }
+});
+
+// ==================== ESTILOS CSS ADICIONAIS ====================
+// Adicionar estilos para garantir que a navegação funcione corretamente
+const estilosNavegacao = `
+<style>
+/* Garantir que apenas a seção ativa seja visível */
+.secao-conteudo {
+    display: none;
+}
+
+.secao-conteudo.active {
+    display: block;
+}
+
+/* Melhorar o visual dos links ativos */
+.link-navegacao.active {
+    background-color: rgba(139, 69, 19, 0.1);
+    color: #8B4513;
+    font-weight: 600;
+}
+
+.link-navegacao.active i {
+    color: #8B4513;
+}
+
+/* Transições suaves */
+.link-navegacao {
+    transition: all 0.3s ease;
+}
+
+.link-navegacao:hover {
+    background-color: rgba(139, 69, 19, 0.05);
+    transform: translateX(5px);
+}
+
+/* Breadcrumb ativo */
+.item-caminho.ativo {
+    color: #8B4513;
+    font-weight: 600;
+}
+</style>
+`;
+
+// Adicionar estilos ao head
+document.head.insertAdjacentHTML('beforeend', estilosNavegacao);
+
